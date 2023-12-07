@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import './App.css'
 import { convertSrtToText } from './utils/convertSrtToText'
+import { Box, Button, Container, Heading, Textarea } from '@chakra-ui/react'
 
 export function App() {
   const [sourceText, setSourceText] = useState("")
@@ -12,26 +12,53 @@ export function App() {
   }
 
   return (
-    <>
-      <h1>SRT To Text Converter</h1>
+    <Container maxWidth='100%' h='100vh' p={12}>
+      <Heading
+        as='h1'
+        size='2xl'
+        colorScheme='blue'
+        textAlign='center'
+        color='#0284c7'
+      >
+        SRT To Text Converter
+      </Heading>
 
-      <section>
-        <h2>Source:</h2>
-        <div className="textarea-wrapper">
-          <label htmlFor="source-text">Paste the content of your SRT file here:</label>
-            <textarea id="source-text" onChange={(e) => setSourceText(e.target.value)} placeholder='Paste the content of your SRT file here...'/>
-        </div>
+      <Box mt={8}>
+        <Heading as='h2' mb={8}>Source:</Heading>
+        <Box h={240}>
+            <Textarea
+              id="source-text"
+              onChange={(e) => setSourceText(e.target.value)}
+              placeholder='Paste the content of your SRT file here...'
+              resize='none'
+              h='100%'
+            />
+        </Box>
 
-        <button onClick={handleTextConversion}>Convert!</button>
-      </section>
+        <Button
+          onClick={handleTextConversion}
+          width='100%'
+          size='lg'
+          colorScheme='blue'
+          mt={12}
+        >
+          Convert!
+        </Button>
+      </Box>
 
-      <section>
-        <h2>Result:</h2>
-        <div className="textarea-wrapper">
-          <label htmlFor="result-text">Here's the result:</label>
-            <textarea id="result-text" value={resultText} readOnly placeholder='The result will appear here...'/>
-        </div>
-      </section>
-    </>
+      <Box mt={8}>
+        <Heading as='h2' mb={8}>Result:</Heading>
+        <Box h={240}>
+            <Textarea
+              id="result-text"
+              value={resultText}
+              readOnly
+              placeholder='The result will appear here...'
+              resize='none'
+              h='100%'
+            />
+        </Box>
+      </Box>
+    </Container>
   )
 }
