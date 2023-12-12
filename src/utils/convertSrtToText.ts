@@ -14,11 +14,17 @@ export function convertSrtToText(sourceText: string): string {
     }
 
     return linesWithoutTimingAndNumbers
+    
   }
 
-  const newLines = removeLinesWithoutText(lines)
-  const newText = newLines.join('')
+  const clearedLines = removeLinesWithoutText(lines)
+  const clearedText = clearedLines.join('')
 
-  return newText
+  const searchItalicsTags = /<\/?i>/g
+  const replaceItalicsTagsWith = ""
+
+  const resultText = clearedText.split(searchItalicsTags).join(replaceItalicsTagsWith)
+
+  return resultText
 }
 
